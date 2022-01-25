@@ -1,0 +1,20 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  postgres:
+      image: postgres:13.3
+      environment:
+        POSTGRES_DB: "finra"
+        POSTGRES_USER: "postgres"
+        POSTGRES_PASSWORD: "postgres"
+      ports:
+        - "5432:5432"
+  finraapi:
+    image: finraapi
+    build:
+      context: .
+      dockerfile: Finra.API/Dockerfile
+    ports:
+      - 8080:80

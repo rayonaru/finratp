@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.7" />
+    <ProjectReference Include="..\Finra.Core\Finra.Core.csproj" />
+    <ProjectReference Include="..\Finra.Application\Finra.Application.csproj" />
+  </ItemGroup>
+</Project>
