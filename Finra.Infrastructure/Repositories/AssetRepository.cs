@@ -2,9 +2,11 @@ using Finra.Application.Responses;
 using Finra.Core.Models;
 using Finra.Core.Repositories;
 using Finra.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Finra.Infrastructure.Repositories
 {
@@ -17,7 +19,7 @@ namespace Finra.Infrastructure.Repositories
             _context = context;            
         }
 
-        public Asset GetById(int id)
+        public async Task<Asset> GetById(int id)
         {
             var query = from a in _context.Assets
                         where a.Id.Equals(id)
@@ -34,10 +36,10 @@ namespace Finra.Infrastructure.Repositories
                             IssuingCompany = a.IssuingCompany,
                         };
 
-            return query.SingleOrDefault();
+            return await query.SingleOrDefaultAsync();
         }
 
-        public Asset GetByIsinCode(string isin)
+        public async Task<Asset> GetByIsinCode(string isin)
         {
                var query = from a in _context.Assets
                         where a.Isin.Equals(isin)
@@ -54,10 +56,10 @@ namespace Finra.Infrastructure.Repositories
                             IssuingCompany = a.IssuingCompany,
                         };
 
-            return query.SingleOrDefault();
+            return await query.SingleOrDefaultAsync();
         }
 
-        public IEnumerable<AssetResponse> Search(string code, int? activeType)
+        public async Task<IEnumerable<AssetResponse>> Search(string code, int? activeType)
         {
             if (code.Length < 3)
                 throw new Exception("search string length must be greater 3");
@@ -89,7 +91,7 @@ namespace Finra.Infrastructure.Repositories
                             LotSize = a.LotSize
                         };
 
-            var asset = query.ToList();
+            var asset = await query.ToListAsync();
 
             return asset;
         }

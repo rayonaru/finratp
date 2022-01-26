@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Finra.Application.Responses;
 using Finra.Core.Models;
 using Finra.Core.Repositories;
 using Finra.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Finra.Infrastructure.Repositories
 {
@@ -16,7 +18,7 @@ namespace Finra.Infrastructure.Repositories
             _context = context;
         }
 
-        public IEnumerable<IssuingCompany> GetAll()
+        public async Task<IEnumerable<IssuingCompany>> GetAll()
         {
             var query = from ic in _context.IssuingCompanies
                         select new IssuingCompany{
@@ -26,10 +28,10 @@ namespace Finra.Infrastructure.Repositories
                             Industry = ic.Industry
                         };                  
 
-            return query.ToList();
+            return await query.ToListAsync();
         }
 
-        public IEnumerable<AssetWithIssuerResponse> GetAssetsByIssuedId(int id)
+        public async Task<IEnumerable<AssetWithIssuerResponse>> GetAssetsByIssuedId(int id)
         {
             var query = from ic in _context.IssuingCompanies
                         join a in _context.Assets on ic.Id equals a.IssuingCompany.Id
@@ -47,7 +49,7 @@ namespace Finra.Infrastructure.Repositories
                             Issuer = ic.Name
                         };
 
-            return query.ToList();
+            return await query.ToListAsync();
         }
     }
 }
