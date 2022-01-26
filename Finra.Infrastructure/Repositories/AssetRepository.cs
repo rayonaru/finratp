@@ -1,6 +1,6 @@
+using Finra.Application.Interfaces.Repositories;
 using Finra.Application.Responses;
 using Finra.Core.Models;
-using Finra.Core.Repositories;
 using Finra.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;

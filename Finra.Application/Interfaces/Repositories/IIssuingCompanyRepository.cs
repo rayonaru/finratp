@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Finra.Application.Responses;
 using Finra.Core.Models;
 
-namespace Finra.Core.Repositories
+namespace Finra.Application.Interfaces.Repositories
 {
     public interface IIssuingCompanyRepository
     {

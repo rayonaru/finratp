@@ -1,4 +1,4 @@
-using Finra.Core.Repositories;
+using Finra.Application.Interfaces.Repositories;
 using Finra.Infrastructure.Data;
 using Finra.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -47,8 +47,6 @@ namespace Finra.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Finra.API v1"));
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

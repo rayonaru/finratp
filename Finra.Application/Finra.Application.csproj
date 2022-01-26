@@ -4,4 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Finra.Core\Finra.Core.csproj" />
+  </ItemGroup>
 </Project>

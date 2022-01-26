@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Finra.Application.Interfaces.Repositories;
 using Finra.Application.Responses;
 using Finra.Core.Models;
-using Finra.Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Finra.API.Controllers

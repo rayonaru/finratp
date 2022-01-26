@@ -1,11 +1,12 @@
+using Finra.Application.Interfaces.Repositories;
+using Finra.Application.Responses;
+using Finra.Core.Models;
+using Finra.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Finra.Application.Responses;
-using Finra.Core.Models;
-using Finra.Core.Repositories;
-using Finra.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Finra.Infrastructure.Repositories
 {

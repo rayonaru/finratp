@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Finra.Infrastructure\Finra.Infrastructure.csproj" />
+    <ProjectReference Include="..\Finra.Application\Finra.Application.csproj" />
   </ItemGroup>
 </Project>

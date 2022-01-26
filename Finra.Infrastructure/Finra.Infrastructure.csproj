@@ -7,7 +7,10 @@
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.7" />
-    <ProjectReference Include="..\Finra.Core\Finra.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Finra.Application\Finra.Application.csproj" />
+    <ProjectReference Include="..\Finra.Core\Finra.Core.csproj" />
   </ItemGroup>
 </Project>
