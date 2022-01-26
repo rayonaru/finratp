@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Finra.Application.Responses;
+using Finra.Core.Models;
 using Finra.Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,20 +20,16 @@ namespace Finra.API.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IEnumerable<IssuingCompany>> GetAll()
         {
-            var issuers = await _repository.GetAll();
-
-            return Ok(issuers);
+            return await _repository.GetAll();
         }
 
         [HttpGet]
         [Route("[action]/{id}")]
-        public async Task<IActionResult> GetAssetsByIssuingId(int id)
+        public async Task<IEnumerable<AssetWithIssuerResponse>> GetAssetsByIssuingId(int id)
         {
-            var assets = await _repository.GetAssetsByIssuedId(id);
-
-            return Ok(assets);
+            return await _repository.GetAssetsByIssuedId(id);
         }
     }
 }
