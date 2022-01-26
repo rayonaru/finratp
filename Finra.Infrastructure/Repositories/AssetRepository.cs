@@ -34,7 +34,7 @@ namespace Finra.Infrastructure.Repositories
                             IssuingCompany = a.IssuingCompany,
                         };
 
-            return query.Single();
+            return query.SingleOrDefault();
         }
 
         public Asset GetByIsinCode(string isin)
@@ -54,7 +54,7 @@ namespace Finra.Infrastructure.Repositories
                             IssuingCompany = a.IssuingCompany,
                         };
 
-            return query.Single();
+            return query.SingleOrDefault();
         }
 
         public IEnumerable<AssetResponse> Search(string code, int? activeType)
