@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Finra.Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,27 +17,27 @@ namespace Finra.API.Controllers
 
         [HttpGet]
         [Route("[action]/{id:int}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var asset = _repository.GetById(id);
+            var asset = await _repository.GetById(id);
 
             return Ok(asset);
         }
 
         [HttpGet]
         [Route("[action]")]
-        public IActionResult GetByIsinCode([FromQuery(Name = "isin")] string isin)
+        public async Task<IActionResult> GetByIsinCode([FromQuery(Name = "isin")] string isin)
         {
-            var asset = _repository.GetByIsinCode(isin);
+            var asset = await _repository.GetByIsinCode(isin);
 
             return Ok(asset);
         }
 
         [HttpGet]
         [Route("[action]")]
-        public IActionResult Search([FromQuery(Name = "code")] string code, [FromQuery(Name = "activeType")] int? activeType)
+        public async Task<IActionResult> Search([FromQuery(Name = "code")] string code, [FromQuery(Name = "activeType")] int? activeType)
         {
-            var asset = _repository.Search(code, activeType);
+            var asset = await _repository.Search(code, activeType);
 
             return Ok(asset);
         }

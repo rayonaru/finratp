@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Finra.Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,18 +17,18 @@ namespace Finra.API.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var issuers = _repository.GetAll();
+            var issuers = await _repository.GetAll();
 
             return Ok(issuers);
         }
 
         [HttpGet]
         [Route("[action]/{id}")]
-        public IActionResult GetAssetsByIssuingId(int id)
+        public async Task<IActionResult> GetAssetsByIssuingId(int id)
         {
-            var assets = _repository.GetAssetsByIssuedId(id);
+            var assets = await _repository.GetAssetsByIssuedId(id);
 
             return Ok(assets);
         }
