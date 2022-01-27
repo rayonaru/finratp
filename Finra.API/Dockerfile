@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
 WORKDIR /app
 EXPOSE 5000
-
 ENV ASPNETCORE_URLS=http://*:5000
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
@@ -16,7 +15,7 @@ WORKDIR "/src/Finra.API"
 RUN dotnet build "Finra.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Finra.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Finra.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
