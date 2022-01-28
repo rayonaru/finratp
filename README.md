@@ -1,10 +1,52 @@
 # finratp
-test project for fin-ra
+test project for fin-ra with auto migration, data seed and clean architecture 
 
 # swagger
-``
-http://+:port/swagger/index.html
-``
+make run
+````
+http://localhost:5000/swagger/index.html
+````
+make docker-up
+````
+http://localhost:8080/swagger/index.html
+````
+
+# makefile
+run api
+````
+make run
+````
+build api
+````
+make app-build
+````
+build api release version
+````
+make app-build-release
+````
+publish api
+````
+make app-publish
+````
+add migration
+````
+make migration-add name={migrationName}
+````
+remove last migration
+````
+make migration-remove
+````
+
+update database
+````
+make update-database
+````
+
+build docker conainer and uo
+````
+make docker-up
+````
+
 
 # run
 ````
@@ -16,6 +58,3 @@ dotnet run
 docker-compose build
 docker-compose up
 ````
-
-# db schema
-![Backend dependencies](https://github.com/rayonaru/finratp/blob/main/finradb.png)
