@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Finra.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220125085513_upd")]
-    partial class upd
+    [Migration("20220128203712_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,20 @@ namespace Finra.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ActiveTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "share",
+                            Name = "Акция"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "bond",
+                            Name = "Облигация"
+                        });
                 });
 
             modelBuilder.Entity("Finra.Core.Models.Asset", b =>
@@ -87,6 +101,21 @@ namespace Finra.Infrastructure.Migrations
                     b.HasIndex("IssuingCompanyId");
 
                     b.ToTable("Assets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActiveTypeId = 1,
+                            BeginDate = new DateTime(2007, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CurrencyTypeid = 1,
+                            ExchangeId = 1,
+                            Isin = "RU0009029540",
+                            IssuingCompanyId = 2,
+                            LotSize = 10,
+                            Name = "Сбербанк России, акция обыкновенная",
+                            Ticket = "SBER"
+                        });
                 });
 
             modelBuilder.Entity("Finra.Core.Models.Country", b =>
@@ -105,6 +134,20 @@ namespace Finra.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "ru",
+                            Name = "Россия"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "usa",
+                            Name = "США"
+                        });
                 });
 
             modelBuilder.Entity("Finra.Core.Models.CurrencyType", b =>
@@ -123,6 +166,20 @@ namespace Finra.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CurrencyTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "rub",
+                            Name = "RUB"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "usd",
+                            Name = "USD"
+                        });
                 });
 
             modelBuilder.Entity("Finra.Core.Models.Exchange", b =>
@@ -141,6 +198,14 @@ namespace Finra.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Exchanges");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "MISX",
+                            Name = "Московская биржа"
+                        });
                 });
 
             modelBuilder.Entity("Finra.Core.Models.Industry", b =>
@@ -159,6 +224,39 @@ namespace Finra.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Industries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "it",
+                            Name = "IT"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Технологии"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Добыча ископаемых"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Нефть и газ"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Телекоммуникации"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Финансы"
+                        });
                 });
 
             modelBuilder.Entity("Finra.Core.Models.IssuingCompany", b =>
@@ -168,7 +266,7 @@ namespace Finra.Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("Countryid")
+                    b.Property<int>("CountryId")
                         .HasColumnType("integer");
 
                     b.Property<int>("IndustryId")
@@ -179,11 +277,55 @@ namespace Finra.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Countryid");
+                    b.HasIndex("CountryId");
 
                     b.HasIndex("IndustryId");
 
                     b.ToTable("IssuingCompanies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 1,
+                            IndustryId = 1,
+                            Name = "Яндекс"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 1,
+                            IndustryId = 6,
+                            Name = "Сбербанк России"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 1,
+                            IndustryId = 5,
+                            Name = "МТС"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryId = 1,
+                            IndustryId = 4,
+                            Name = "Сургутнефтегаз"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CountryId = 1,
+                            IndustryId = 3,
+                            Name = "Алроса"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CountryId = 2,
+                            IndustryId = 2,
+                            Name = "Apple"
+                        });
                 });
 
             modelBuilder.Entity("Finra.Core.Models.Asset", b =>
@@ -225,7 +367,7 @@ namespace Finra.Infrastructure.Migrations
                 {
                     b.HasOne("Finra.Core.Models.Country", "Country")
                         .WithMany("IssuingCompanies")
-                        .HasForeignKey("Countryid")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

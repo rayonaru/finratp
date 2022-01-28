@@ -1,4 +1,5 @@
 using Finra.Core.Models;
+using Finra.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Finra.Infrastructure.Data
@@ -15,5 +16,10 @@ namespace Finra.Infrastructure.Data
         public virtual DbSet<Exchange> Exchanges { get; set; }
         public virtual DbSet<CurrencyType> CurrencyTypes { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
     }
 }

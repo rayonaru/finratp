@@ -4,13 +4,11 @@ services:
   postgres:
       image: postgres:13.3
       environment:
-        POSTGRES_DB: "finra_auto"
+        POSTGRES_DB: "finra"
         POSTGRES_USER: "postgres"
         POSTGRES_PASSWORD: "postgres"
       ports:
-        - "5432:5432"
-      networks:
-        - my-network
+        - "6543:5432"
   finraapi:
     image: finraapi
     build:
@@ -18,9 +16,3 @@ services:
       dockerfile: Finra.API/Dockerfile
     ports:
       - "8080:5000"
-    networks:
-      - my-network
-
-networks:
-  my-network:
-    external: true
