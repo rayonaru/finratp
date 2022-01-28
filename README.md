@@ -42,7 +42,7 @@ update database
 make update-database
 ````
 
-build docker conainer and uo
+build docker container and up
 ````
 make docker-up
 ````
