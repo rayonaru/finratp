@@ -1,23 +1,23 @@
 run:
-	cd Finra.API/ && dotnet run
+	cd src/Finra.API/ && dotnet run
 
 app-build:
-	cd Finra.API/ && dotnet build
+	cd src/Finra.API/ && dotnet build
 
 app-build-release:
-	cd Finra.API/ && dotnet build -c Release -o ../app/build
+	cd src/Finra.API/ && dotnet build -c Release -o ../app/build
 
 app-publish:
-	cd Finra.API/ && dotnet publish -c Release -o ../app/publish
+	cd src/Finra.API/ && dotnet publish -c Release -o ../app/publish
 
 migration-add:
-	cd Finra.Infrastructure/ && dotnet ef --startup-project ../Finra.API/ migrations add $(name)
+	cd src/Finra.Infrastructure/ && dotnet ef --startup-project ../Finra.API/ migrations add $(name)
 
 migration-remove:
-	cd Finra.Infrastructure/ && dotnet ef --startup-project ../Finra.API/ migrations remove
+	cd src/Finra.Infrastructure/ && dotnet ef --startup-project ../Finra.API/ migrations remove
 
 update-database:
-	cd Finra.Infrastructure/ && dotnet ef --startup-project ../Finra.API/ database update
+	cd src/Finra.Infrastructure/ && dotnet ef --startup-project ../Finra.API/ database update
 
 docker-up:
 	docker-compose build && docker-compose up

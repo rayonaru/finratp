@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finra-api
+spec:
+  # replicas: 3
+  selector:
+    matchLabels:
+      app: finra-api
+  template:
+    metadata:
+      labels:
+        app: finra-api
+    spec:
+      containers:
+      - name: finra-api
+        image: finra-api
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+          protocol: TCP

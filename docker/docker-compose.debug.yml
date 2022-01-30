@@ -7,7 +7,7 @@ services:
     image: finraapi
     build:
       context: .
-      dockerfile: Finra.API/Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - 8080:80
     environment:

@@ -9,10 +9,10 @@ services:
         POSTGRES_PASSWORD: "postgres"
       ports:
         - "6543:5432"
-  finraapi:
-    image: finraapi
-    build:
-      context: .
-      dockerfile: Finra.API/Dockerfile
-    ports:
-      - "8080:5000"
+  # finraapi:
+  #   image: finraapi
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  #   ports:
+  #     - "8080:5000"
